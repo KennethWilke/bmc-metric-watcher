@@ -29,6 +29,14 @@ def meminfo(graph, last_dataset, data):
             avail = int(line.split()[-2]) * 1024
             metrics += '{0}.memory.available {1} {2}\n'.format(graph, avail,
                                                                data['time'])
+        elif line.startswith('Buffers:'):
+            free = int(line.split()[-2]) * 1024
+            metrics += '{0}.memory.buffers {1} {2}\n'.format(graph, free,
+                                                             data['time'])
+        elif line.startswith('Cached:'):
+            avail = int(line.split()[-2]) * 1024
+            metrics += '{0}.memory.cache {1} {2}\n'.format(graph, avail,
+                                                           data['time'])
     return metrics
 
 
