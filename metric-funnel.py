@@ -36,6 +36,8 @@ def metric_report(client, data, error):
         clients[client]['buffer'] = ''
     except:
         clients[client]['buffer'] += data
+        if len(clients[client]['buffer']) > 1000000:
+            clients[client]['buffer'] = ''
         return
 
     bmc = data['bmc']
